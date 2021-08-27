@@ -50,7 +50,6 @@ const Control = (): JSX.Element => {
   );
   const startCar = useMutation(() =>
     fetch(`${API_URL}/api/car/start`, {
-      method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
