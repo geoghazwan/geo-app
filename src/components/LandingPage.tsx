@@ -39,15 +39,6 @@ const Landing: React.FC = () => {
         }}
       >
         <Flex flexDirection="column">
-          <LoadScript googleMapsApiKey="AIzaSyACwLiZf2lPPvgY8CCr5UTflr-oktkyIjg">
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={center}
-              zoom={10}
-            >
-              <></>
-            </GoogleMap>
-          </LoadScript>
           <IonText
             style={{ fontSize: "48px", fontWeight: "bold" }}
             color="tertiary"

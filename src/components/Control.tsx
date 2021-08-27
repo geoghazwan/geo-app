@@ -7,11 +7,10 @@ import {
   useIonToast,
 } from "@ionic/react";
 import { ReactBingmaps } from "react-bingmaps-plus";
-import BingMapsReact from "bingmaps-react";
 import { Flex } from "@rebass/grid";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { Modal as Location } from "./Location";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router";
 import styled from "styled-components";
