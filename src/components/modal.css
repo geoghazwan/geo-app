@@ -1,0 +1,7 @@
+.modal-wrapper {
+  border-radius: 8px !important;
+  padding: 24px;
+  display: flex;
+  align-items: baseline;
+  overflow-y: scroll;
+}

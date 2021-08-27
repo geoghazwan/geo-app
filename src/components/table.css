@@ -1,0 +1,28 @@
+.rt-td {
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+}
+
+.rt-th {
+  height: 75px;
+  color: #585858;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.rt-tr {
+  background-color: #fff;
+}
+.-odd {
+  background-color: #f9faff;
+}
+
+.ReactTable {
+  max-width: 95vw;
+  overflow-x: auto;
+}
