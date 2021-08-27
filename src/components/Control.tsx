@@ -48,8 +48,20 @@ const Control = (): JSX.Element => {
   const { data, isLoading, refetch } = useQuery("car", () =>
     fetch(`${API_URL}/api/car/single/${params?.id}`).then((res) => res.json())
   );
+
+  const stopCar = useMutation(() =>
+    fetch(`${API_URL}/api/car/stop`, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: params?.id }),
+    }).then((res) => res.json())
+  );
   const startCar = useMutation(() =>
     fetch(`${API_URL}/api/car/start`, {
+      method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -182,6 +194,28 @@ const Control = (): JSX.Element => {
               }}
             >
               Start Car
+            </IonButton>
+
+            <IonButton
+              size="large"
+              expand="block"
+              color="danger"
+              onClick={(): void => {
+                stopCar.mutateAsync().then(async (): Promise<void> => {
+                  await refetch();
+                  present({
+                    buttons: [
+                      { text: "show location", handler: () => setOpen(true) },
+                      { text: "hide", handler: () => dismiss() },
+                    ],
+                    message: `${data.function} car has stopped!`,
+                    onDidDismiss: () => console.log("dismissed"),
+                    onWillDismiss: () => console.log("will dismiss"),
+                  });
+                });
+              }}
+            >
+              Stop Car
             </IonButton>
 
             <IonButton
