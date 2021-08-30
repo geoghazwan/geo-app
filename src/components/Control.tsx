@@ -49,7 +49,7 @@ const Control = (): JSX.Element => {
     fetch(`${API_URL}/api/car/single/${params?.id}`).then((res) => res.json())
   );
   const stopCar = useMutation(() =>
-    fetch(`${API_URL}/api/car/stop/${params?.id}`, {
+    fetch(`${API_URL}/api/motor/stop/${params?.id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -57,7 +57,16 @@ const Control = (): JSX.Element => {
     }).then((res) => res.json())
   );
   const startCar = useMutation(() =>
-    fetch(`${API_URL}/api/car/start/${params?.id}`, {
+    fetch(`${API_URL}/api/motor/start/${params?.id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json())
+  );
+
+  const locateCar = useMutation(() =>
+    fetch(`${API_URL}/api/location/get_location`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -165,10 +174,6 @@ const Control = (): JSX.Element => {
               </Flex>
             )}
 
-            <IonButton size="large" expand="block" color="danger">
-              Shutdown Car
-            </IonButton>
-
             <IonButton
               size="large"
               expand="block"
@@ -198,6 +203,7 @@ const Control = (): JSX.Element => {
               onClick={(): void => {
                 stopCar.mutateAsync().then(async (): Promise<void> => {
                   await refetch();
+
                   present({
                     buttons: [
                       { text: "show location", handler: () => setOpen(true) },
@@ -270,7 +276,7 @@ const Control = (): JSX.Element => {
                 },
               ],
             }}
-            center={[data?.location?.geo?.lat, data?.location?.geo?.long]}
+            center={[locateCar?.data?.geo?.lat, locateCar.data?.geo?.long]}
           ></ReactBingmaps>
         )}
         {showed === "location" && (
@@ -278,7 +284,7 @@ const Control = (): JSX.Element => {
             bingmapKey="ArbnYp2XOhXHppjcXt5Oumig-8-UxAJVdt84t-yf9CfodGujDflYs3Q-izpj8BfV"
             zoom={60}
             mapTypeId={"aerial"}
-            center={[data?.location?.geo?.lat, data?.location?.geo?.long]}
+            center={[locateCar?.data?.geo?.lat, locateCar.data?.geo?.long]}
           ></ReactBingmaps>
         )}
       </FullScreen>
