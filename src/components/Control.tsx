@@ -48,25 +48,20 @@ const Control = (): JSX.Element => {
   const { data, isLoading, refetch } = useQuery("car", () =>
     fetch(`${API_URL}/api/car/single/${params?.id}`).then((res) => res.json())
   );
-
   const stopCar = useMutation(() =>
-    fetch(`${API_URL}/api/car/stop`, {
-      method: "post",
+    fetch(`${API_URL}/api/car/stop/${params?.id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: params?.id }),
     }).then((res) => res.json())
   );
   const startCar = useMutation(() =>
-    fetch(`${API_URL}/api/car/start`, {
-      method: "post",
+    fetch(`${API_URL}/api/car/start/${params?.id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: params?.id }),
     }).then((res) => res.json())
   );
   const captureImage = useMutation(() =>
